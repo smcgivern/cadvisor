@@ -378,6 +378,34 @@ func NewPrometheusCollector(i infoProvider, f ContainerLabelsFunc, includedMetri
 					return metricValues{{value: float64(s.Memory.RSS), timestamp: s.Timestamp}}
 				},
 			}, {
+				name:      "container_memory_active_anon",
+				help:      "Size of active_anon memory in bytes.",
+				valueType: prometheus.GaugeValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{{value: float64(s.Memory.ActiveAnon), timestamp: s.Timestamp}}
+				},
+			}, {
+				name:      "container_memory_inactive_anon",
+				help:      "Size of inactive_anon memory in bytes.",
+				valueType: prometheus.GaugeValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{{value: float64(s.Memory.InactiveAnon), timestamp: s.Timestamp}}
+				},
+			}, {
+				name:      "container_memory_active_file",
+				help:      "Size of active_file memory in bytes.",
+				valueType: prometheus.GaugeValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{{value: float64(s.Memory.ActiveFile), timestamp: s.Timestamp}}
+				},
+			}, {
+				name:      "container_memory_inactive_file",
+				help:      "Size of inactive_file memory in bytes.",
+				valueType: prometheus.GaugeValue,
+				getValues: func(s *info.ContainerStats) metricValues {
+					return metricValues{{value: float64(s.Memory.InactiveFile), timestamp: s.Timestamp}}
+				},
+			}, {
 				name:      "container_memory_mapped_file",
 				help:      "Size of memory mapped files in bytes.",
 				valueType: prometheus.GaugeValue,
